@@ -1,15 +1,18 @@
-public interface MyList<T> {
+import java.util.*;
 
-    // void add(Object o);
+public interface MyList<T> {
 
     void add(T t);
 
-    void add(Object o, int index);
+    void add(T t, int index);
 
-    void sort();
+    void sort(Comparator<? super T> comparator);
 
-    //Same as concat();
-    void addAll(MyList<T> newList);
+    //Same as concat() по индексу
+    void addAll(Collection<? extends T> newList, int index);
+
+    //Добавление всех эл-ов в конец
+    void addAll(Collection<? extends T> newList);
 
     boolean delete(int i);
 
@@ -17,14 +20,17 @@ public interface MyList<T> {
 
     int size();
 
-    int indexOf(T t);
+    //Возвращает массив индексов по совпадениям
+    int[] indexOf(T t);
 
     T[] toArray();
 
     boolean isEmpty();
 
+    //Удаляет внутренний массив коллекции и создает новый пустой
     boolean clear();
 
-    boolean contains(Object o);
+    //Проверяет наличие элемента в списке
+    boolean contains(T t);
 
 }

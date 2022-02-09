@@ -1,6 +1,26 @@
+import java.util.Collection;
+import java.util.Comparator;
+
 public class MyArrayList<T> implements MyList {
 
-    private int size = 10;
+    private static final int DEFAULT_CAPACITY = 10;
+    private int size;
+    private T[] array;
+
+  /*  public MyArrayList(int size) {
+        this.size = size;
+    }
+
+    public MyArrayList(T[] array) {
+        this.array = (T[]) new Object[DEFAULT_CAPACITY];
+        for (int i = 0; i < array.length; i++) {
+            this.array[i] = array[i];
+        }
+    }
+
+    public MyArrayList() {
+       // this.array = (T[]) new Object[DEFAULT_CAPACITY];
+    } */
 
     @Override
     public void add(Object o) {
@@ -13,12 +33,17 @@ public class MyArrayList<T> implements MyList {
     }
 
     @Override
-    public void sort() {
+    public void sort(Comparator comparator) {
 
     }
 
     @Override
-    public void addAll(MyList newList) {
+    public void addAll(Collection newList, int index) {
+
+    }
+
+    @Override
+    public void addAll(Collection newList) {
 
     }
 
@@ -34,17 +59,17 @@ public class MyArrayList<T> implements MyList {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
-    public int indexOf(Object o) {
-        return 0;
+    public int[] indexOf(Object o) {
+        return new int[0];
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return array;
     }
 
     @Override
@@ -61,4 +86,7 @@ public class MyArrayList<T> implements MyList {
     public boolean contains(Object o) {
         return false;
     }
+
+
+    MyList<String> l = new MyArrayList();
 }
