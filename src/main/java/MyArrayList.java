@@ -1,5 +1,7 @@
 public class MyArrayList<T> implements MyList {
 
+    private int size = 10;
+
     @Override
     public void add(Object o) {
 
