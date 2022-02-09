@@ -18,7 +18,7 @@ public interface MyList<T> {
 
     T get(int index);
 
-    int size();
+    int getSize();
 
     //Возвращает массив индексов по совпадениям
     int[] indexOf(T t);
