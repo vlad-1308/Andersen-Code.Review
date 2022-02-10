@@ -1,10 +1,12 @@
 public class MyArrayList<T> implements MyList {
 
     private int size = 10;
+    private Object [] array = new Object[size];
+    private int num;
 
     @Override
     public void add(Object o) {
-
+        array[num++]=o;
     }
 
     @Override
@@ -29,7 +31,8 @@ public class MyArrayList<T> implements MyList {
 
     @Override
     public Object get(int index) {
-        return null;
+
+        return (Object) array[index];
     }
 
     @Override
@@ -54,11 +57,22 @@ public class MyArrayList<T> implements MyList {
 
     @Override
     public boolean clear() {
+
         return false;
     }
-
+/*Метод проверяет наличие елемента в списке елементов
+* Если список пуст вернуть false. Если елемент найден вернуть true;
+ */
     @Override
     public boolean contains(Object o) {
+      for (int i = 0 ; i <array.length; i++){
+          if (this.array[i]== null){
+              return false;
+          }
+          else if (array[i].equals(o)){
+              return true;
+          }
+      }
         return false;
     }
 }
