@@ -16,7 +16,7 @@ public interface MyList<T> {
 
     boolean delete(int i);
 
-    T get(int index);
+    Object get(int index);
 
     int getSize();
 

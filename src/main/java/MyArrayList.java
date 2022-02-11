@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import org.jetbrains.annotations.NotNull;
-import java.util.*;
+
 public class MyArrayList<T> implements MyList<T> {
     private static final int DEFAULT_CAPACITY = 10;
     private Object[] array;
@@ -82,7 +82,7 @@ public class MyArrayList<T> implements MyList<T> {
         if (capacity < DEFAULT_CAPACITY) {
             return array = Arrays.copyOf(array, DEFAULT_CAPACITY + this.getLength());
         } else {
-            return array = Arrays.copyOf(array, capacity + this.getLength());
+            return array = Arrays.copyOf(array, capacity + this.getLength() + (capacity - DEFAULT_CAPACITY));
         }
     }
 
@@ -99,7 +99,7 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
-    public T get(int index) {
+    public Object get(int index) {
         //trofimov
         if (index >= 0 && index < size) {
             return array[index];
