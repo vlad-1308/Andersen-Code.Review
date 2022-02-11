@@ -1,4 +1,5 @@
 
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -92,11 +93,6 @@ public class MyArrayList<T> implements MyList<T> {
         return this.addAll(newList, this.getSize());
     }
 
-    @Override
-    public boolean delete(int i) {
-        return false;
-        //skalubo
-    }
 
     @Override
     public Object get(int index) {
@@ -134,15 +130,34 @@ public class MyArrayList<T> implements MyList<T> {
     public boolean isEmpty() {
         return this.getSize() == 0;
     }
-
+    /*
+    * Перезаписывает елемент на пустой
+    */
     @Override
-    public boolean clear() {
-        return false;
-        //orlovskiy
+
+    public void clear() {
+        for (int i = 0; i<array.length;i++){
+            if (array[i]!=null){
+                array[i]=null;
+            }
+        }
+
     }
 
+   /*
+    *Метод проверяет наличие елемента в списке елементов
+   * Если список пуст вернуть false. Если елемент найден вернуть true;
+   */
     @Override
     public boolean contains(Object o) {
+      for (int i = 0 ; i <array.length; i++){
+          if (this.array[i]== null){
+              return false;
+          }
+          else if (array[i].equals(o)){
+              return true;
+          }
+      }
         return false;
         //orlovskiy
     }

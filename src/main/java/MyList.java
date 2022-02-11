@@ -28,7 +28,9 @@ public interface MyList<T> {
     boolean isEmpty();
 
     //Удаляет внутренний массив коллекции и создает новый пустой
-    boolean clear();
+    void clear();
+    
+    
 
     //Проверяет наличие элемента в списке
     boolean contains(T t);
