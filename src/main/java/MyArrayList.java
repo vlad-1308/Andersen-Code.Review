@@ -6,7 +6,7 @@ public class MyArrayList<T> implements MyList {
 
     @Override
     public void add(Object o) {
-        array[num++]=o;
+
     }
 
     @Override
