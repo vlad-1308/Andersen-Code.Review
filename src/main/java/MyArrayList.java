@@ -1,5 +1,3 @@
-
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -34,13 +32,29 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void add(T o) {
-    //skalubo
+        this.add(o, size);
     }
 
+    // Добавляет элемент в указанную точку списка. При этом все значения справа съезжают на одну позицию для
+    // освобождения места. Если размер массива равен размеру списка, то происходит увеличение размера.
     @Override
     public void add(T o, int index) {
-    //skalubo
+        if (index > this.getLength()) {
+            throw new IndexOutOfBoundsException("Введенный индекс превышает размер целевого списка");
+        }
+        if (getLength() == size) {
+            this.array = upLength(1);
+        }
+        if (this.getSize() - index > 0) {
+
+            for (int i = getSize(); i > index - 1; i--) {
+                array[i + 1] = array[i];
+            }
+        }
+        this.array[index] = o;
+        size++;
     }
+
     @Override
     public void sort(Comparator comparator) {
         //trofimov
@@ -94,20 +108,26 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
-    public boolean delete(int i) {
-        return false;
+    public boolean delete(int index) {
+        if (index > this.getLength()) {
+            throw new IndexOutOfBoundsException("Введенный индекс превышает размер целевого списка");
+        }
+
+        for (int i = index - 1; i < this.getSize(); i++) {
+            this.array[i] = this.array[i + 1];
+        }
+        this.size--;
+        return true;
     }
 
 
     @Override
     public Object get(int index) {
-        //trofimov
         if (index >= 0 && index < size) {
             return array[index];
         }
         else {
-            System.out.println("Выход за границы массива");
-            return null;
+            throw new IndexOutOfBoundsException("Выход за пределы списка.");
         }
     }
 
@@ -120,7 +140,6 @@ public class MyArrayList<T> implements MyList<T> {
             }
         }
         return -1;
-        //krasnik
     }
 
     // Возвращает все элементы списка в массиве.
@@ -135,16 +154,15 @@ public class MyArrayList<T> implements MyList<T> {
     public boolean isEmpty() {
         return this.getSize() == 0;
     }
+
     /*
     * Перезаписывает елемент на пустой
     */
     @Override
     public void clear() {
         this.array= new Object[DEFAULT_CAPACITY];
-            }
-
-
-
+        size = 0;
+    }
 
    /*
     *Метод проверяет наличие елемента в списке елементов
@@ -161,7 +179,6 @@ public class MyArrayList<T> implements MyList<T> {
           }
       }
         return false;
-        //orlovskiy
     }
 
 }
