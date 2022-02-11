@@ -1,8 +1,8 @@
 public class MyArrayList<T> implements MyList {
 
-    private int size = 10;
-    private Object [] array = new Object[size];
-    private int num;
+    private static final int DEFAULT_CAPACITY = 10;
+    private Object [] array ;
+    private int size;
 
     @Override
     public void add(Object o) {
@@ -59,7 +59,6 @@ public class MyArrayList<T> implements MyList {
     */
     @Override
     public void clear() {
-
         for (int i = 0; i<array.length;i++){
             if (array[i]!=null){
                 array[i]=null;
