@@ -23,7 +23,7 @@ public interface MyList<T> {
 
     boolean isEmpty();
 
-    boolean clear();
+    void clear();
 
     boolean contains(Object o);
 

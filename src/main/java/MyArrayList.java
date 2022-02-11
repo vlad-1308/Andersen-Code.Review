@@ -54,15 +54,19 @@ public class MyArrayList<T> implements MyList {
     public boolean isEmpty() {
         return false;
     }
+    /*
+    * Перезаписывает ссылку на новый масив
+    */
 
     @Override
-    public boolean clear() {
-
-        return false;
+    public void clear() {
+        this.array= new Object[size];
     }
-/*Метод проверяет наличие елемента в списке елементов
+
+/*
+*Метод проверяет наличие елемента в списке елементов
 * Если список пуст вернуть false. Если елемент найден вернуть true;
- */
+*/
     @Override
     public boolean contains(Object o) {
       for (int i = 0 ; i <array.length; i++){
