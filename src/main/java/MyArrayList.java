@@ -48,20 +48,23 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     public boolean addAll(@NotNull Collection<? extends T> newList, int index) {
         // Если введенный индекс вне рамок размера коллекции, то выбрасывает исключение.
-        if (index > this.getLength())
+        if (index > this.getLength()) {
             throw new IndexOutOfBoundsException("Введенный индекс превышает размер целевого списка");
+        }
 
         Object[] arrList = newList.toArray();
         int lengthOfAddingArr = arrList.length;
 
         // Если необходимо, то увеличиваем размер внутреннего массива.
-        if (this.getLength() - this.getSize() < arrList.length)
+        if (this.getLength() - this.getSize() < arrList.length) {
             this.array = upLength(arrList.length);
+        }
 
         // Если index с которого необходимо начать добавление находится не в конце списка, то освобождаем место во
         // внутреннем массиве, сдвигая вправо элементы после index включительно.
-        if (this.getSize() - index > 0)
-        System.arraycopy(array, index, array, index + lengthOfAddingArr, this.getSize() - index);
+        if (this.getSize() - index > 0) {
+            System.arraycopy(array, index, array, index + lengthOfAddingArr, this.getSize() - index);
+        }
         System.arraycopy(arrList, 0, this.array, index, lengthOfAddingArr);
 
         // Увеличиваем размерность нашего списка
@@ -73,10 +76,11 @@ public class MyArrayList<T> implements MyList<T> {
         увеличение на DEFAULT_CAPACITY. В случае, если места требуется больше, то увеличение происходит на capacity +
         DEFAULT_CAPACITY.*/
     private Object[] upLength(int capacity) {
-        if (capacity < DEFAULT_CAPACITY)
+        if (capacity < DEFAULT_CAPACITY) {
             return array = Arrays.copyOf(array, DEFAULT_CAPACITY + this.getLength());
-        else
+        } else {
             return array = Arrays.copyOf(array, capacity + this.getLength());
+        }
     }
 
     // Добавляет коллекцию строго в конец нашего списка.
@@ -101,8 +105,9 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     public int indexOf(@NotNull T t) {
         for (int i = 0; i < this.getSize(); i++) {
-            if (this.array[i].equals(t))
+            if (this.array[i].equals(t)) {
                 return i;
+            }
         }
         return -1;
         //krasnik
