@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class MyArrayList<T> implements MyList<T> {
@@ -6,7 +8,7 @@ public class MyArrayList<T> implements MyList<T> {
     private int size;
 
     //Конструктор с добавлением массива в список
-    public MyArrayList(T[] array) {
+    public MyArrayList(T @NotNull [] array) {
         this.array = new Object[array.length + DEFAULT_CAPACITY];
         System.arraycopy(array, 0, this.array, 0, array.length);
         size = array.length;
@@ -44,7 +46,7 @@ public class MyArrayList<T> implements MyList<T> {
     /*  Метод добавляет в список всю коллекцию в определенное место списка, начиная с index. Возвращает true в случае
         удачного выполнения.*/
     @Override
-    public boolean addAll(Collection<? extends T> newList, int index) {
+    public boolean addAll(@NotNull Collection<? extends T> newList, int index) {
         // Если введенный индекс вне рамок размера коллекции, то выбрасывает исключение.
         if (index > this.getLength())
             throw new IndexOutOfBoundsException("Введенный индекс превышает размер целевого списка");
@@ -79,7 +81,7 @@ public class MyArrayList<T> implements MyList<T> {
 
     // Добавляет коллекцию строго в конец нашего списка.
     @Override
-    public boolean addAll(Collection<? extends T> newList) {
+    public boolean addAll(@NotNull Collection<? extends T> newList) {
         return this.addAll(newList, this.getSize());
     }
 
@@ -97,7 +99,7 @@ public class MyArrayList<T> implements MyList<T> {
 
     //Возвращает индекс первого совпадения. Если совпадений нет, то возвращает -1.
     @Override
-    public int indexOf(T t) {
+    public int indexOf(@NotNull T t) {
         for (int i = 0; i < this.getSize(); i++) {
             if (this.array[i].equals(t))
                 return i;
