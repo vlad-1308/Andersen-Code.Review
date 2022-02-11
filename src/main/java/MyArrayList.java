@@ -140,13 +140,11 @@ public class MyArrayList<T> implements MyList<T> {
     */
     @Override
     public void clear() {
-        for (int i = 0; i<array.length;i++){
-            if (array[i]!=null){
-                array[i]=null;
+        this.array= new Object[DEFAULT_CAPACITY];
             }
-        }
 
-    }
+
+
 
    /*
     *Метод проверяет наличие елемента в списке елементов
