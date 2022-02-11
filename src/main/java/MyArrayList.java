@@ -1,7 +1,9 @@
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
-
 public class MyArrayList<T> implements MyList<T> {
     private static final int DEFAULT_CAPACITY = 10;
     private Object[] array;
@@ -30,17 +32,18 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
-    public void add(Object o) {
+    public void add(T o) {
     //skalubo
     }
 
     @Override
-    public void add(Object o, int index) {
+    public void add(T o, int index) {
     //skalubo
     }
     @Override
     public void sort(Comparator comparator) {
-    //trofimov
+        //trofimov
+        Arrays.sort(array, 0, size, comparator);
     }
 
     /*  Метод добавляет в список всю коллекцию в определенное место списка, начиная с index. Возвращает true в случае
@@ -97,8 +100,14 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        return null;
         //trofimov
+        if (index >= 0 && index < size) {
+            return array[index];
+        }
+        else {
+            System.out.println("Выход за границы массива");
+            return null;
+        }
     }
 
     //Возвращает индекс первого совпадения. Если совпадений нет, то возвращает -1.
@@ -124,7 +133,6 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     public boolean isEmpty() {
         return this.getSize() == 0;
-
     }
 
     @Override
