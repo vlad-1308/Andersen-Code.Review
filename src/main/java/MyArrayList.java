@@ -55,18 +55,23 @@ public class MyArrayList<T> implements MyList {
         return false;
     }
     /*
-    * Перезаписывает ссылку на новый масив
+    * Перезаписывает елемент на пустой
     */
-
     @Override
     public void clear() {
-        this.array= new Object[size];
+
+        for (int i = 0; i<array.length;i++){
+            if (array[i]!=null){
+                array[i]=null;
+            }
+        }
+
     }
 
-/*
-*Метод проверяет наличие елемента в списке елементов
-* Если список пуст вернуть false. Если елемент найден вернуть true;
-*/
+   /*
+    *Метод проверяет наличие елемента в списке елементов
+   * Если список пуст вернуть false. Если елемент найден вернуть true;
+   */
     @Override
     public boolean contains(Object o) {
       for (int i = 0 ; i <array.length; i++){
