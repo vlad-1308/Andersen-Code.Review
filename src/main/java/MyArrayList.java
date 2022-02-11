@@ -123,9 +123,8 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public boolean isEmpty() {
-        if (this.getSize() == 0)
-            return true;
-        else return false;
+        return this.getSize() == 0;
+
     }
 
     @Override
