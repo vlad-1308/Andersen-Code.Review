@@ -106,16 +106,19 @@ public class MyArrayList<T> implements MyList<T> {
         //krasnik
     }
 
+    // Возвращает все элементы списка в массиве.
     @Override
     public Object[] toArray() {
-        return array;
-        //muradzade
+        Object[] destArr = new Object[this.getSize()];
+        System.arraycopy(this.array, 0, destArr, 0, this.getSize());
+        return destArr;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
-        //muradzade
+        if (this.getSize() == 0)
+            return true;
+        else return false;
     }
 
     @Override
