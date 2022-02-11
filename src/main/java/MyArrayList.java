@@ -1,7 +1,8 @@
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 
-public class MyArrayList<T> implements MyList {
+public class MyArrayList<T> implements MyList<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
     private int size;
@@ -23,18 +24,19 @@ public class MyArrayList<T> implements MyList {
     } */
 
     @Override
-    public void add(Object o) {
+    public void add(T o) {
     //skalubo
     }
 
     @Override
-    public void add(Object o, int index) {
+    public void add(T o, int index) {
     //skalubo
     }
 
     @Override
     public void sort(Comparator comparator) {
-    //trofimov
+        //trofimov
+        Arrays.sort(array, 0, size, comparator);
     }
 
     @Override
@@ -54,9 +56,15 @@ public class MyArrayList<T> implements MyList {
     }
 
     @Override
-    public Object get(int index) {
-        return null;
+    public T get(int index) {
         //trofimov
+        if (index >= 0 && index < size) {
+            return array[index];
+        }
+        else {
+            System.out.println("Выход за границы массива");
+            return null;
+        }
     }
 
     @Override
@@ -71,7 +79,7 @@ public class MyArrayList<T> implements MyList {
     }
 
     @Override
-    public Object[] toArray() {
+    public T[] toArray() {
         return array;
         //muradzade
     }
