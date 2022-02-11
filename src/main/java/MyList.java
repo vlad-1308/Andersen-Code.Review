@@ -20,8 +20,8 @@ public interface MyList<T> {
 
     int getSize();
 
-    //Возвращает массив индексов по совпадениям
-    int[] indexOf(T t);
+    //Возвращает индекс по первому совпадению
+    int indexOf(T t);
 
     Object[] toArray();
 

@@ -95,9 +95,14 @@ public class MyArrayList<T> implements MyList<T> {
         //trofimov
     }
 
+    //Возвращает индекс первого совпадения. Если совпадений нет, то возвращает -1.
     @Override
-    public int[] indexOf(Object o) {
-        return new int[0];
+    public int indexOf(T t) {
+        for (int i = 0; i < this.getSize(); i++) {
+            if (this.array[i].equals(t))
+                return i;
+        }
+        return -1;
         //krasnik
     }
 
