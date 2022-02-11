@@ -93,6 +93,11 @@ public class MyArrayList<T> implements MyList<T> {
         return this.addAll(newList, this.getSize());
     }
 
+    @Override
+    public boolean delete(int i) {
+        return false;
+    }
+
 
     @Override
     public Object get(int index) {
@@ -134,7 +139,6 @@ public class MyArrayList<T> implements MyList<T> {
     * Перезаписывает елемент на пустой
     */
     @Override
-
     public void clear() {
         for (int i = 0; i<array.length;i++){
             if (array[i]!=null){
