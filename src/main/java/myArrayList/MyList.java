@@ -6,8 +6,6 @@ public interface MyList<T> {
 
     void add(T t);
 
-    void add(T t, int index);
-
     void sort(Comparator<? super T> comparator);
 
     //Добавление всех эл-ов в конец

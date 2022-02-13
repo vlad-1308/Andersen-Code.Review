@@ -39,7 +39,6 @@ public class MyArrayList<T> implements MyList<T> {
 
     // Добавляет элемент в указанную точку списка. При этом все значения справа съезжают на одну позицию для
     // освобождения места. Если размер массива равен размеру списка, то происходит увеличение размера.
-    @Override
     public void add(T o, int index) {
         if (index > this.getLength()) {
             throw new IndexOutOfBoundsException("Введенный индекс превышает размер целевого списка");

@@ -1,6 +1,7 @@
 package myLinkedList;
 
 import myArrayList.MyList;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -8,15 +9,28 @@ import java.util.Comparator;
 public class MyLinkedList<T> implements MyList<T> {
 
     private int size;
+    private MyNode<T> next;
+    private MyNode<T> prev, first, last;
 
-    @Override
-    public void add(T t) {
+    public MyLinkedList() {
 
     }
 
-    @Override
-    public void add(T t, int index) {
+    public MyLinkedList(@NotNull Collection<? extends T> coll) {
+        this();
+        addAll(coll);
+    }
 
+    @Override
+    public void add(T t) {
+      /*  MyNode<T> node = new MyNode<>(prev, t, null);
+        first = node;
+        if (last == null) {
+            first = node;
+        } else {
+            last.prev = node;
+        }
+        size++; */
     }
 
     @Override
@@ -35,8 +49,14 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    public Object get(int index) {
-        return null;
+    public T get(int index) {
+        MyNode<T> f = first;
+        if (index < size - 1) {
+            for (int i = 0; i < index - 1; i++) {
+                f = f.next;
+            }
+        }
+         return f.item;
     }
 
     @Override
@@ -54,12 +74,12 @@ public class MyLinkedList<T> implements MyList<T> {
 
     }
 
-    private static class MyNode<E> {
-        E item;
-        MyNode<E> next;
-        MyNode<E> prev;
+    private static class MyNode<T> {
+        T item;
+        MyNode<T> next;
+        MyNode<T> prev;
 
-        MyNode(MyNode<E> prev, E element, MyNode<E> next) {
+        MyNode(MyNode<T> prev, T element, MyNode<T> next) {
             this.item = element;
             this.next = next;
             this.prev = prev;
