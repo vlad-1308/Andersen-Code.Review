@@ -65,7 +65,7 @@ public class MyArrayList<T> implements MyList<T> {
 
     /*  Метод добавляет в список всю коллекцию в определенное место списка, начиная с index. Возвращает true в случае
         удачного выполнения.*/
-    @Override
+
     public boolean addAll(@NotNull Collection<? extends T> newList, int index) {
         // Если введенный индекс вне рамок размера коллекции, то выбрасывает исключение.
         if (index > this.getLength()) {
@@ -134,7 +134,7 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     //Возвращает индекс первого совпадения. Если совпадений нет, то возвращает -1.
-    @Override
+
     public int indexOf(@NotNull T t) {
         for (int i = 0; i < this.getSize(); i++) {
             if (this.array[i].equals(t)) {
@@ -145,7 +145,7 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     // Возвращает все элементы списка в массиве.
-    @Override
+
     public Object[] toArray() {
         Object[] destArr = new Object[this.getSize()];
         System.arraycopy(this.array, 0, destArr, 0, this.getSize());
@@ -170,7 +170,7 @@ public class MyArrayList<T> implements MyList<T> {
     *Метод проверяет наличие елемента в списке елементов
    * Если список пуст вернуть false. Если елемент найден вернуть true;
    */
-    @Override
+
     public boolean contains(Object o) {
       for (int i = 0 ; i <array.length; i++){
           if (this.array[i]== null){

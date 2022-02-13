@@ -4,10 +4,10 @@ import myArrayList.MyList;
 
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.LinkedList;
 
 public class MyLinkedList<T> implements MyList<T> {
 
+    private int size;
 
     @Override
     public void add(T t) {
@@ -22,11 +22,6 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public void sort(Comparator<? super T> comparator) {
 
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> newList, int index) {
-        return false;
     }
 
     @Override
@@ -50,16 +45,6 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    public int indexOf(T t) {
-        return 0;
-    }
-
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
-    }
-
-    @Override
     public boolean isEmpty() {
         return false;
     }
@@ -67,11 +52,6 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public void clear() {
 
-    }
-
-    @Override
-    public boolean contains(T t) {
-        return false;
     }
 
     private static class MyNode<E> {
