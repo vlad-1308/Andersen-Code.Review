@@ -23,7 +23,7 @@ public class MyLinkedList<T> implements IMyList<T>, Iterable<T> {
 
     public MyLinkedList(@NotNull Collection<? extends T> coll) {
         this();
-
+        addAllFirst(coll);
     }
 
     @Override
@@ -42,6 +42,18 @@ public class MyLinkedList<T> implements IMyList<T>, Iterable<T> {
         firstNode = new MyNode<T>(null, null, next);
         next.prev = firstNode;
         size++;
+    }
+
+    public void addAllFirst(Collection<? extends T> coll) {
+        for (T t : coll) {
+            addFirst(t);
+        }
+    }
+
+    public void addAllLast(Collection<? extends T> coll) {
+        for (T t : coll) {
+            addLast(t);
+        }
     }
 
     @Override
