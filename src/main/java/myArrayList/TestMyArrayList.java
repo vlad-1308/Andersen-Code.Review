@@ -3,6 +3,7 @@ package myArrayList;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
+import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +18,7 @@ class TestMyArrayList {
     void add() {
         MyArrayList<Integer> l = new MyArrayList<>();
         l.add(1);
-        assertEquals(1,1);
+        assertNotNull(l);
     }
 
 
@@ -26,8 +27,9 @@ class TestMyArrayList {
         MyArrayList<Integer> l = new MyArrayList<>();
         l.add(1);
         l.add(3);
-        l.add(0);
-        assertArrayEquals(new int[]{0, 1, 3}, new int[]{0, 1, 3});
+        l.add(2);
+        l.sort((Comparator) l);
+        assertEquals(new int[]{1,2,3},l);
 
     }
 
@@ -39,7 +41,7 @@ class TestMyArrayList {
         l.add(3);
         MyArrayList<Integer> l2 = new MyArrayList<>();
         l.addAll((Collection<? extends Integer>) l2);
-        assertArrayEquals(new int []{1,2,3},new int []{1,2,3});
+        assertNotNull(l2);
     }
 
 
@@ -47,11 +49,9 @@ class TestMyArrayList {
     void delete() {
         MyArrayList<Integer> l = new MyArrayList<>();
         l.add(1);
-        l.add(2);
-        l.add(3);
+
         l.delete(1);
-        l.delete(2);
-        l.delete(3);
+
         assertArrayEquals(new int []{},new int []{});
     }
 
@@ -82,7 +82,7 @@ class TestMyArrayList {
     @Test
     void isEmpty() {
         MyArrayList<Integer> l = new MyArrayList<>();
-        assertEquals(true,l.isEmpty());
+        assertTrue(l.isEmpty());
     }
 
     @Test
@@ -100,6 +100,6 @@ class TestMyArrayList {
         l.add(1);
         l.add(2);
         l.add(3);
-        assertEquals(false,l.contains(4));
+        assertFalse(l.contains(4));
     }
 }

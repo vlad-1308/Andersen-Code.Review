@@ -3,14 +3,21 @@ package myLinkedList;
 import myArrayList.MyList;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.ListIterator;
 
-public class MyLinkedList<T> implements MyList<T> {
+public class MyLinkedList<T> implements IMyList<T> {
 
     private int size;
     private MyNode<T> next;
     private MyNode<T> prev, first, last;
+
+    @Override
+    public boolean delete(int i) {
+        return false;
+    }
 
     public MyLinkedList() {
 
@@ -18,41 +25,37 @@ public class MyLinkedList<T> implements MyList<T> {
 
     public MyLinkedList(@NotNull Collection<? extends T> coll) {
         this();
-        addAll(coll);
+
     }
 
     @Override
     public void add(T t) {
-      /*  MyNode<T> node = new MyNode<>(prev, t, null);
-        first = node;
-        if (last == null) {
-            first = node;
+        MyNode node = new MyNode<>( prev,t, null);
+        if (first == null) {
+            node.next=null;
+            node.prev=null;
+            first=node;
+            last=node;
         } else {
-            last.prev = node;
+            last.next = node;
+            node.prev=last;
+            last=node;
         }
-        size++; */
+        size++;
     }
+
 
     @Override
     public void sort(Comparator<? super T> comparator) {
 
     }
 
-    @Override
-    public boolean addAll(Collection<? extends T> newList) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(int i) {
-        return false;
-    }
 
     @Override
     public T get(int index) {
         MyNode<T> f = first;
-        if (index < size - 1) {
-            for (int i = 0; i < index - 1; i++) {
+        if (index < size ) {
+            for (int i = 0; i < index ; i++) {
                 f = f.next;
             }
         }
@@ -61,23 +64,30 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public int getSize() {
-        return 0;
+        return size;
     }
 
-    @Override
-    public boolean isEmpty() {
+
+
+    public boolean isEmpty(MyNode<T> node) {
+        if (node!=null){
+            return true;
+        }
         return false;
     }
 
     @Override
     public void clear() {
-
+        this.next=null;
+        this.last=null;
+        size=0;
     }
 
     private static class MyNode<T> {
         T item;
         MyNode<T> next;
         MyNode<T> prev;
+
 
         MyNode(MyNode<T> prev, T element, MyNode<T> next) {
             this.item = element;
