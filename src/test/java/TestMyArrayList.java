@@ -1,5 +1,4 @@
-package myArrayList;
-
+import myArrayList.MyArrayList;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
