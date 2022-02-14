@@ -7,11 +7,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class TestMyLinkedList {
 
     @Test
-    void add() {
+    void addLast() {
         MyLinkedList<Integer> list = new MyLinkedList<>();
-        list.add(1);
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
         assertNotNull(list);
-
+        assertEquals(4, list.getSize());
     }
 
     @Test

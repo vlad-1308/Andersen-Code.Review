@@ -3,16 +3,12 @@ package myLinkedList;
 import myArrayList.MyList;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.ListIterator;
+import java.util.*;
 
-public class MyLinkedList<T> implements IMyList<T> {
+public class MyLinkedList<T> implements IMyList<T>, Iterable<T> {
 
     private int size;
-    private MyNode<T> next;
-    private MyNode<T> prev, first, last;
+    private MyNode<T> firstNode, lastNode;
 
     @Override
     public boolean delete(int i) {
@@ -20,7 +16,9 @@ public class MyLinkedList<T> implements IMyList<T> {
     }
 
     public MyLinkedList() {
-
+        lastNode = new MyNode<T>(null, firstNode, null);
+        firstNode = new MyNode<T>(null, null, lastNode);
+        size = 0;
     }
 
     public MyLinkedList(@NotNull Collection<? extends T> coll) {
@@ -29,37 +27,41 @@ public class MyLinkedList<T> implements IMyList<T> {
     }
 
     @Override
-    public void add(T t) {
-        MyNode node = new MyNode<>( prev,t, null);
-        if (first == null) {
-            node.next=null;
-            node.prev=null;
-            first=node;
-            last=node;
-        } else {
-            last.next = node;
-            node.prev=last;
-            last=node;
-        }
+    public void addLast(T t) {
+        MyNode<T> prev = lastNode;
+        prev.item = t;
+        lastNode = new MyNode<>(null, prev, null);
+        prev.next = lastNode;
         size++;
     }
 
+    @Override
+    public void addFirst(T t) {
+        MyNode<T> next = firstNode;
+        next.item = t;
+        firstNode = new MyNode<T>(null, null, next);
+        next.prev = firstNode;
+        size++;
+    }
 
     @Override
     public void sort(Comparator<? super T> comparator) {
 
     }
 
-
     @Override
     public T get(int index) {
-        MyNode<T> f = first;
+        MyNode<T> f = firstNode.next;
         if (index < size ) {
             for (int i = 0; i < index ; i++) {
-                f = f.next;
+                f = getNextNode(f);
             }
         }
          return f.item;
+    }
+
+    public MyNode<T> getNextNode(MyNode<T> current) {
+        return current.next;
     }
 
     @Override
@@ -67,20 +69,33 @@ public class MyLinkedList<T> implements IMyList<T> {
         return size;
     }
 
-
-
-    public boolean isEmpty(MyNode<T> node) {
-        if (node!=null){
-            return true;
-        }
-        return false;
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     @Override
     public void clear() {
-        this.next=null;
-        this.last=null;
+        this.firstNode=null;
+        this.lastNode=null;
         size=0;
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            int count = 0;
+
+            @Override
+            public boolean hasNext() {
+                return count < size;
+            }
+
+            @Override
+            public T next() {
+                return get(count++);
+            }
+        };
     }
 
     private static class MyNode<T> {
@@ -89,7 +104,7 @@ public class MyLinkedList<T> implements IMyList<T> {
         MyNode<T> prev;
 
 
-        MyNode(MyNode<T> prev, T element, MyNode<T> next) {
+        MyNode(T element, MyNode<T> prev, MyNode<T> next) {
             this.item = element;
             this.next = next;
             this.prev = prev;
