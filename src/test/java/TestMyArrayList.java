@@ -1,12 +1,41 @@
 import myArrayList.MyArrayList;
+import myLinkedList.MyLinkedList;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestMyArrayList {
+
+    class MyValue implements Comparator<MyValue> {
+        private int u;
+        public MyValue(int s){
+            this.u = s;
+        }
+
+        public int getU() {
+            return u;
+        }
+
+        @Override
+        public int compare(MyValue o1, MyValue o2) {
+            int result = 0;
+
+            if (o1.getU() > o2.getU()) {
+                result = 1;
+            } else if (o1.getU() < o2.getU()) {
+                result = -1;
+            } else {
+                result = 0;
+            }
+
+            return result;
+        }
+    }
 
     @Test
     void getSize() {
@@ -23,23 +52,34 @@ class TestMyArrayList {
 
     @Test
     void sort() {
-        MyArrayList<Integer> l = new MyArrayList<>();
-        l.add(1);
-        l.add(3);
-        l.add(2);
-        l.sort((Comparator) l);
-        assertEquals(new int[]{1,2,3},l);
+        MyArrayList<MyValue> l = new MyArrayList<>();
+        MyValue c2 = new MyValue(2);
+        MyValue c3 = new MyValue(3);
+        MyValue c1 = new MyValue(1);
 
+        l.add(c1);
+        l.add(c3);
+        l.add(c2);
+        l.sort(c1);
+
+        MyLinkedList<MyValue> lt = new MyLinkedList<>();
+        lt.addLast(c1);
+        lt.addLast(c2);
+        lt.addLast(c3);
+
+        for (int i = 0; i < 3; i++) {
+            assertEquals(l.get(i),lt.get(i));
+        }
     }
 
     @Test
     void addAll() {
-        MyArrayList<Integer> l = new MyArrayList<>();
+        ArrayList<Integer> l = new ArrayList<>();
         l.add(1);
         l.add(2);
         l.add(3);
         MyArrayList<Integer> l2 = new MyArrayList<>();
-        l.addAll((Collection<? extends Integer>) l2);
+        l2.addAll(l);
         assertNotNull(l2);
     }
 
