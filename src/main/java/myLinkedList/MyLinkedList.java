@@ -2,7 +2,6 @@ package myLinkedList;
 
 import myArrayList.MyList;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
 
 public class MyLinkedList<T> implements IMyList<T>, Iterable<T> {
@@ -58,7 +57,12 @@ public class MyLinkedList<T> implements IMyList<T>, Iterable<T> {
 
     @Override
     public void sort(Comparator<? super T> comparator) {
-
+        T[] array = this.toArray();
+        Arrays.sort(array, 0, size, comparator);
+        this.clear();
+        for (T it : array) {
+            this.addLast(it);
+        }
     }
 
     @Override
@@ -87,8 +91,10 @@ public class MyLinkedList<T> implements IMyList<T>, Iterable<T> {
 
     @Override
     public void clear() {
-        this.firstNode=null;
-        this.lastNode=null;
+        //this.firstNode=null;
+        //this.lastNode=null;
+        this.lastNode = new MyNode<T>(null, this.firstNode, null);
+        this.firstNode = new MyNode<T>(null, null, this.lastNode);
         size=0;
     }
 
@@ -121,5 +127,13 @@ public class MyLinkedList<T> implements IMyList<T>, Iterable<T> {
             this.next = next;
             this.prev = prev;
         }
+    }
+
+    public T[] toArray() {
+        Object[] result = new Object[size];
+        int i = 0;
+        for (MyLinkedList.MyNode<T> x = firstNode.next; i < size; x = x.next)
+            result[i++] = x.item;
+        return (T[]) result;
     }
 }
