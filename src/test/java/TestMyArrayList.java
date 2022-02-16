@@ -1,11 +1,8 @@
 import myArrayList.MyArrayList;
-import myLinkedList.MyLinkedList;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -62,10 +59,10 @@ class TestMyArrayList {
         l.add(c2);
         l.sort(c1);
 
-        MyLinkedList<MyValue> lt = new MyLinkedList<>();
-        lt.addLast(c1);
-        lt.addLast(c2);
-        lt.addLast(c3);
+        MyArrayList<MyValue> lt = new MyArrayList<>();
+        lt.add(c1);
+        lt.add(c2);
+        lt.add(c3);
 
         for (int i = 0; i < 3; i++) {
             assertEquals(l.get(i),lt.get(i));

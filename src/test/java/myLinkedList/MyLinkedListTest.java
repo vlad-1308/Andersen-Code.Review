@@ -1,7 +1,5 @@
 package myLinkedList;
 
-import myArrayList.MyArrayList;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
